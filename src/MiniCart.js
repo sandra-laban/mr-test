@@ -9,19 +9,17 @@ function MiniCart({ cartItems }) {
 
   return (
     <div className="mini-cart">
-      <p onClick={toggleCart}>My Cart ( {cartItems.length} )</p>
+      <p onClick={toggleCart}>My Cart ({cartItems.length})</p>
       {isExpanded && (
-        <ul>
+        <div className="cart-dropdown">
           {cartItems.map((item, index) => (
-            <li key={index}>
-              <img src={item.imageURL} alt={item.name} />
-              <span>
-                {item.name} - Size: {item.size}
-              </span>
-              <span>Price: ${item.price}</span>
-            </li>
+            <div key={index}>
+              <p>{item.name}</p>
+              <p>Size: {item.selectedSize}</p>
+              <p>Price: ${item.price}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   )

@@ -64,19 +64,33 @@ function ProductDetails({ addToCart }) {
               <h2>{product.title}</h2>
               <p class="price">Price: ${product.price}</p>
               <p class="description">{product.description}</p>
-
-              <select
-                value={selectedSize}
-                onChange={(e) => setSelectedSize(e.target.value)}
-              >
-                <option value="">Select Size</option>
+              <span className="mr-2 size">
+                Size<em class="required">*</em>
+              </span>
+              <ul className="list-inline">
                 {product.sizeOptions.map((sizeOption) => (
-                  <option key={sizeOption.id} value={sizeOption.label}>
+                  <li
+                    key={sizeOption.id}
+                    onClick={() => setSelectedSize(sizeOption.label)}
+                    className={`list-inline-item ${
+                      selectedSize === sizeOption.label
+                        ? 'font-weight-bold border border-dark p-2'
+                        : 'border border-light p-2'
+                    }`}
+                    style={{
+                      width: '40px',
+                      textAlign: 'center',
+                      fontSize: 'smaller',
+                      color: '#888888',
+                    }}
+                  >
                     {sizeOption.label}
-                  </option>
+                  </li>
                 ))}
-              </select>
-              <button onClick={handleAddToCart}>Add to Cart</button>
+              </ul>
+              <button className="add-to-cart-btn" onClick={handleAddToCart}>
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>
